@@ -17,6 +17,14 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World Front-end!"
+      - run: echo build step
+      - run: mkdir build_output
+      - run: touch build_output/compiled_output.txt
+      # persist_to_workspace allows to reuse the file out of this stage , * shows it persists all the files in the directory 
+      - persist_to_workspace:
+        root: build_output
+        paths: 
+          - '*'
   test-frontend:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
@@ -67,6 +75,9 @@ jobs:
       - checkout
       - run: python3 main.py 
       - run: echo integration step for check
+      - attach_workspace:
+        at: ~/repo/workspace
+      - run: ls ~/repo/workspace/compiled_output.txt
    
   
   deploy:
@@ -81,6 +92,9 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Deploying apps Stageeeeeee!!!!!!!!!!!!...................!!!!!!!!!!!!!!!!!!!"
+      - attach_workspace:
+        at: ~/repo/workspace
+      - run: ls ~/repo/workspace/compiled_output.txt
     
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
