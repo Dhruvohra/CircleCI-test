@@ -7,3 +7,6 @@ merged pull request from other branch and uodated readme.md
 
 
 testing skip ci'
+
+
+tested pull request in advnace project settings to enable only build branches which are associated with pull requests.
