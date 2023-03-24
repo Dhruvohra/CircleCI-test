@@ -63,7 +63,11 @@ workflows:
   say-hello-workflow:
     jobs:
       - build
-      - test
-      - deploy
+      - test:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - test
             
           
