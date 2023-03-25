@@ -73,7 +73,7 @@ jobs:
       - checkout
       - run:
           name: "Say hello"
-          command: "echo Deploying apps Stageeeeeee!!!!!!!!!!!!...................!!!!!!!!!!!!!!!!!!!"
+          command: "echo Deploying apps Stageeeeeee!!!!!!!!!!!...................!!!!!!!!!!!!!!!!!!!"
       - attach_workspace:
           at: ~/repo/workspace
       - run: ls ~/repo/workspace/compiled_output.txt
